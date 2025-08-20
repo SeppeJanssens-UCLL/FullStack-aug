@@ -34,7 +34,14 @@ const teacherRouter = express.Router();
  *               items:
  *                  $ref: '#/components/schemas/Teacher'
  */
-teacherRouter.get('/', async (req: Request, res: Response, next: NextFunction) => {});
+teacherRouter.get('/', async (req: Request, res: Response, next: NextFunction) => { 
+    try {
+        const teachers = await teacherService.getAllTeachers();
+        res.json(teachers);
+    } catch (err) {
+        next(err);
+    }
+});
 
 /**
  * @swagger
