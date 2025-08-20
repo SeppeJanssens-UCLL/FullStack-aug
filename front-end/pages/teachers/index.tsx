@@ -1,13 +1,19 @@
 import Header from '@components/header';
 import TeacherOverview from '@components/teachers/TeacherOverview';
 import TeacherService from '@services/TeacherService';
+import { Teacher } from '@types';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import useSWR from 'swr';
 
 const Teachers: React.FC = () => {
-  const fetcher = async (key: string) => {
-    /* Use the TeacherService to fetch all teachers */
+  const fetcher = async () => {
+    const response = await TeacherService.getAllTeachers();
+    if (!response.ok) {
+      throw new Error('Error occurred while fetching teachers: ${response.statusText}');
+    }
+    const data: Teacher[] = await response.json();
+    return data;
   };
 
   const { data, isLoading, error } = useSWR('Teachers', fetcher);
@@ -17,14 +23,14 @@ const Teachers: React.FC = () => {
       <Head>
         <title>Teachers</title>
       </Head>
-      <Header />
+      <Header/>
       <main className="p-6 min-h-screen flex flex-col items-center">
         <h1>Teachers</h1>
 
         <section className="mt-5">
-          {error && <p className="text-danger">{error}</p>}
+          {error && <p className="text-danger">{error.message}</p>}
           {isLoading && <p>Loading...</p>}
-          {/* Use the TeacherOverview component to render data */}
+          {data && <TeacherOverview teachers={data} />}
         </section>
       </main>
     </>
