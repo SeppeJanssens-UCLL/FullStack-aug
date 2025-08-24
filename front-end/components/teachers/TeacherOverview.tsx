@@ -31,13 +31,14 @@ const TeacherOverview: React.FC<Props> = ({ teachers }: Props) => {
                   {teacher.user.firstName + " " + teacher.user.lastName}
                 </td>
                 <td>
-                  {teacher.learningPath}
-                  {loggedInUser && loggedInUser.role === 'admin' && 
+                  {loggedInUser && loggedInUser.role === 'admin' ? (
                     <LearningPath
                       learningPath={teacher.learningPath}
                       teacherId={teacher.id}
                     />
-                  }
+                  ) : (
+                    teacher.learningPath
+                  )}
                 </td>
               </tr>
             ))}
