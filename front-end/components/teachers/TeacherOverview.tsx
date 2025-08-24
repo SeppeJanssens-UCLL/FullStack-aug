@@ -32,6 +32,12 @@ const TeacherOverview: React.FC<Props> = ({ teachers }: Props) => {
                 </td>
                 <td>
                   {teacher.learningPath}
+                  {loggedInUser && loggedInUser.role === 'admin' && 
+                    <LearningPath
+                      learningPath={teacher.learningPath}
+                      teacherId={teacher.id}
+                    />
+                  }
                 </td>
               </tr>
             ))}
