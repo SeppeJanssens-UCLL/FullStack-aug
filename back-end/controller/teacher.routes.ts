@@ -71,7 +71,16 @@ teacherRouter.get('/', async (req: Request, res: Response, next: NextFunction) =
  */
 teacherRouter.put(
     '/:teacherId/learningpath',
-    async (req: Request, res: Response, next: NextFunction) => {}
+    async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const teacherId = parseInt(req.params.teacherId);
+            const { learningPath } = req.body;
+            const updatedTeacher = await teacherService.updateLearningPath(teacherId, learningPath);
+            res.json(updatedTeacher);
+        } catch (err) {
+            next(err);
+        }
+    }
 );
 
 export { teacherRouter };
