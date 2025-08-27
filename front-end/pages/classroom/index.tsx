@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import AddClassroomForm from '@components/classroom/AddClassroomForm';
 
 const ClassroomPage: React.FC = () => {
   const { t } = useTranslation();
@@ -42,9 +43,7 @@ const ClassroomPage: React.FC = () => {
         <title>{t('classroom.title')}</title>
       </Head>
       <Header />
-      <main className="p-6 min-h-screen flex flex-col items-center">
-        <p>Hi</p>
-      </main>
+    <AddClassroomForm />
     </>
   );
 };
