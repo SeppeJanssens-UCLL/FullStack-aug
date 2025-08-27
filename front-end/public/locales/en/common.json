@@ -9,7 +9,8 @@
       "teachers": "Teachers",
       "add-teacher": "Add Teacher",
       "login": "Login",
-      "logout": "Logout"
+      "logout": "Logout",
+      "addClassroom": "Add Classroom"
     }
   },
   "login": {
@@ -25,5 +26,9 @@
   "home": {
     "title": "Good luck with the exam!",
     "description": ""
+  },
+  "classroom": {
+    "title": "Add Classroom",
+    "noAccess": "You are not authorized to view this page."
   }
 }
