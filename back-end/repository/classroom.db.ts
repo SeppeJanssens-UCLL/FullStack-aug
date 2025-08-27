@@ -11,6 +11,10 @@ const getAllClassrooms = async (): Promise<Classroom[]> => {
 };
 
 const createClassroom = async (name: string): Promise<Classroom> => {
+    const classroomExists = await database.classroom.findUnique({
+        where: { name }
+    });
+    if (classroomExists) throw new Error(`Classroom already exists.`);
     try {
         const newClassroom = await database.classroom.create({
             data: { name }
