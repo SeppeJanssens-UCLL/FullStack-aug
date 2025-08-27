@@ -31,7 +31,7 @@
     "title": "Add Classroom",
     "noAccess": "You are not authorized to view this page.",
     "form": {
-      "success": "Added classroom with name: {{name}} and id: {{id}}",
+      "success": "Added classroom with name {{name}} and ID {{id}}",
       "errorEmpty": "Name is required",
       "errorGeneric": "An error occurred while adding the classroom. Please try again.",
       "label": "Name",
