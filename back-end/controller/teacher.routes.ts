@@ -76,8 +76,8 @@ teacherRouter.put(
         try {
             const teacherInput = <TeacherInput>req.body;
             const teacherId = parseInt(req.params.teacherId);
-            const { phase } = teacherInput;
-            const updatedTeacher = await teacherService.updateLearningPath(teacherId, phase);
+            const { learningPath } = teacherInput;
+            const updatedTeacher = await teacherService.updateLearningPath(teacherId, learningPath);
             res.json(updatedTeacher);
         } catch (err) {
             next(err);
