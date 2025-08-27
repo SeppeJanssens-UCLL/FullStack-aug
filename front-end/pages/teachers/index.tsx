@@ -8,12 +8,7 @@ import useSWR from 'swr';
 
 const Teachers: React.FC = () => {
   const fetcher = async () => {
-    const response = await TeacherService.getAllTeachers();
-    if (!response.ok) {
-      throw new Error('Error occurred while fetching teachers: ${response.statusText}');
-    }
-    const data: Teacher[] = await response.json();
-    return data;
+    return TeacherService.getAllTeachers();
   };
 
   const { data, isLoading, error } = useSWR('Teachers', fetcher);

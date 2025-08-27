@@ -15,11 +15,13 @@ const createClassroom = async (name: string): Promise<Classroom> => {
     body: JSON.stringify({ name }),
   });
 
+  const data = await response.json();
+
   if (!response.ok) {
-    throw new Error("Failed to create classroom");
+    throw new Error(data?.message || "Failed to create classroom");
   }
 
-  return response.json();
+  return data;
 };
 
 const ClassroomService = {

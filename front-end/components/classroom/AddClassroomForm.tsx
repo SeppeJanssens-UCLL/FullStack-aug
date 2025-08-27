@@ -32,19 +32,16 @@ const AddClassroomForm: React.FC = () => {
         if (!validate()) return
 
         try {
-            const response = await ClassroomService.createClassroom(name)
+            const created = await ClassroomService.createClassroom(name)
             
-            if (response.status === 201) {
-                const created = await response.json()
-                setStatusNotif([{ message: t("classroom.form.success", { name: created.name, id: created.id }), type: "success" }])
-                setName("")
-            } else {
-                const error = await response.json();
-                setStatusNotif([{ message: await error.message, type: "error" }])
-            }   
-        } catch {
-            setStatusNotif([{ message: t("classroom.form.errorGeneric"), type: "error" }])
-        }
+            setStatusNotif([{ message: t("classroom.form.success", { name: created.name, id: created.id }), type: "success" }])
+            setName("")
+        } catch (err: any) {
+            setStatusNotif([{
+                message: err?.message || t("classroom.form.errorGeneric"),
+                type: "error"
+        }])
+}
     }
 
     return (
