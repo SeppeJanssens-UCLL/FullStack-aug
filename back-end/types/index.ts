@@ -30,4 +30,4 @@ type AuthenticationResponse = {
     role: string;
 };
 
-export { Role, TeacherInput, UserInput, AuthenticationResponse };
+export { Role, TeacherInput, UserInput, ClassroomInput, AuthenticationResponse };
