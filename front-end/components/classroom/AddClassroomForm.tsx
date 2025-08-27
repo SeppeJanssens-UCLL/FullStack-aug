@@ -1,8 +1,7 @@
-import classNames from "classnames"
-import { useState } from "react"
-import { useTranslation } from "next-i18next"
-import { useRouter } from "next/router"
 import ClassroomService from "@services/ClassroomService"
+import classNames from "classnames"
+import { useTranslation } from "next-i18next"
+import { useState } from "react"
 
 const AddClassroomForm: React.FC = () => {
     const [name, setName] = useState("")
@@ -40,7 +39,8 @@ const AddClassroomForm: React.FC = () => {
                 setStatusNotif([{ message: t("classroom.form.success", { name: created.name, id: created.id }), type: "success" }])
                 setName("")
             } else {
-                setStatusNotif([{ message: t("classroom.form.errorGeneric"), type: "error" }])
+                const error = await response.json();
+                setStatusNotif([{ message: await error.message, type: "error" }])
             }   
         } catch {
             setStatusNotif([{ message: t("classroom.form.errorGeneric"), type: "error" }])
