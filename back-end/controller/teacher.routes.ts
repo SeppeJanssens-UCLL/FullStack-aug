@@ -16,6 +16,7 @@
  */
 import express, { NextFunction, Request, Response } from 'express';
 import teacherService from '../service/teacher.service';
+import { TeacherInput } from '../types';
 
 const teacherRouter = express.Router();
 
@@ -73,9 +74,10 @@ teacherRouter.put(
     '/:teacherId/learningpath',
     async (req: Request, res: Response, next: NextFunction) => {
         try {
+            const teacherInput = <TeacherInput>req.body;
             const teacherId = parseInt(req.params.teacherId);
-            const { learningPath } = req.body;
-            const updatedTeacher = await teacherService.updateLearningPath(teacherId, learningPath);
+            const { phase } = teacherInput;
+            const updatedTeacher = await teacherService.updateLearningPath(teacherId, phase);
             res.json(updatedTeacher);
         } catch (err) {
             next(err);

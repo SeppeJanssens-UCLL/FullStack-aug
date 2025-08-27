@@ -15,6 +15,7 @@
 
 import express, { NextFunction, Request, Response } from 'express';
 import classroomService from '../service/classroom.service';
+import { ClassroomInput } from '../types';
 
 const classroomRouter = express.Router();
 
@@ -66,7 +67,8 @@ classroomRouter.get('/', async (req: Request, res: Response, next: NextFunction)
 
 classroomRouter.post('/', async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const classroom = await classroomService.createClassroom(req.body.name);
+        const classroomInput = <ClassroomInput>req.body;
+        const classroom = await classroomService.createClassroom(classroomInput.name);
         res.status(201).json(classroom);
     } catch (err) {
         next(err);
