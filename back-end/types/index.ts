@@ -18,6 +18,11 @@ type TeacherInput = {
     phase?: string;
 };
 
+type ClassroomInput = {
+    id?: number;
+    name?: string;
+};
+
 type AuthenticationResponse = {
     token: string;
     username: string;
